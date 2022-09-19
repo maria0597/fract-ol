@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 18:42:56 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:04:52 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct	s_data
 	int			en;
 	int 		color;
 	int			rt;
+	int			zoom;
 	t_f_pnt		point1;
 	t_itr_prms	params;
 }				t_data;
@@ -66,7 +67,7 @@ int			treeinit(t_data *data);
 int			main_loop(t_data *data);
 int			close_window(t_data *data);
 int			key_hook(int keycode, t_data *data);
-int			mouse_hook(int button, t_f_pnt *start, t_data *data);
+int			mouse_hook(int button, int x, int y, t_data *data);
 void		color_tree(int cc, t_data *data);
 void		clear(t_data *data);
 

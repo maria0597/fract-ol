@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 18:42:34 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:05:08 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	retrydraw(t_data *data)
 	params.b *= -1;
 	tree(data, data->point1, params);
 	mlx_put_image_to_window(data->mlx_ptr, data-> win_ptr, data->img, 0, 0);
-	//printf("x:%f y:%f a:%d b:%d\n",data->point1.x, data->point1.y, params.a, params.b);
+	//printf("x:%f y:%f a:%d b:%d len:%f\n",data->point1.x, data->point1.y, params.a, params.b, params.len);
 }
 
 int	main_loop(t_data *data)

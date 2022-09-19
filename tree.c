@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 18:39:04 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:48:12 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,15 @@ void	tree(t_data *data, t_f_pnt start, t_itr_prms params)
 	tree(data, f_end, params);
 	params.b *= -1;
 	tree(data, f_end, params);
+	// printf("x:%f y:%f\n", f_end.x, f_end.y);
 }
 
 int	treeinit(t_data *data)
 {
 	data->point1.x = WINDOW_WIDTH / 2;
-	data->point1.y = WINDOW_HEIGHT - 60;
+	data->point1.y = WINDOW_HEIGHT - 40;
 	data->color = 0x00FFFF;
-	data->params.len = 100;
+	data->params.len = 115;
 	data->params.a = 90;
 	data->params.b = 30;
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 18:25:44 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:03:53 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,21 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-int	mouse_hook(int button, t_f_pnt *start, t_data *data)
+int	mouse_hook(int button, int x, int y, t_data *data)
 {
-	printf("%i\n", button);
-	if (button == 1)
+	if (button == 4)
 	{
-		start->x += 1;
-		start->y += 1;
+		x = data->params.len += 1;
 		retrydraw(data);
-		//mlx_loop(start->mlx_ptr);
-		start->x++;
+		mlx_loop(data->mlx_ptr);
+		data->params.len++;
 	}
-	// else if (button == 2)
-	// {
-	// 	data->params.len -= 1;
-	// 	retrydraw(data);
-	// 	mlx_loop(data->mlx_ptr);
-	// 	data->params.len++;
-	// }
-	// if (button == 1 || button == 2 || button == 4 || button == 5)
-	// {
-	// 	retrydraw(data);
-	// 	mlx_loop(data->mlx_ptr);
-	// }
+	else if (button == 5)
+	{
+		y = data->params.len -= 1;
+		retrydraw(data);
+		mlx_loop(data->mlx_ptr);
+		data->params.len++;
+	}
 	return (0);
 }
