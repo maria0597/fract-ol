@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 21:48:12 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:31:10 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,33 @@ https://larryriddle.agnesscott.org/ifs/pythagorean/symbinarytreeShape.htm
 
 #include "fractol.h"
 
-void color_tree(int cc, t_data *data)
+void	color_tree(int cc, t_d *d)
 {
-	 if (cc == 20)
-       	data->color = 0x00b8b2;
-    else if (cc == 19)
-        data->color = (0x00b89e);
-    else if (cc == 18)
-        data->color = (0x76b874);
-    else if (cc == 17)
-        data->color = (0xa0b85e);
-    else if (cc == 16)
-        data->color = (0xc6b644);
-    else if (cc == 15)
-        data->color = (0xfeb500);
-    else if (cc == 14)
-        data->color = (0xff8c00);
-    else if (cc == 13)
-        data->color = (0xfb7700);
-    else if (cc == 12)
-        data->color = (0xec4e02);
-    else if (cc == 11)
-        data->color = (0xFC0909);
-    else if (cc == 10)
-        data->color = (0xdf210b);
+	if (cc == 20)
+		d->color = 0x00b8b2;
+	else if (cc == 19)
+		d->color = (0x00b89e);
+	else if (cc == 18)
+		d->color = (0x76b874);
+	else if (cc == 17)
+		d->color = (0xa0b85e);
+	else if (cc == 16)
+		d->color = (0xc6b644);
+	else if (cc == 15)
+		d->color = (0xfeb500);
+	else if (cc == 14)
+		d->color = (0xff8c00);
+	else if (cc == 13)
+		d->color = (0xfb7700);
+	else if (cc == 12)
+		d->color = (0xec4e02);
+	else if (cc == 11)
+		d->color = (0xFC0909);
+	else if (cc == 10)
+		d->color = (0xdf210b);
 }
 
-void	tree(t_data *data, t_f_pnt start, t_itr_prms params)
+void	tree(t_d *d, t_f_pnt start, t_itr_prms params)
 {
 	t_f_pnt	f_end;
 	t_i_pnt	i_end;
@@ -71,30 +71,29 @@ void	tree(t_data *data, t_f_pnt start, t_itr_prms params)
 	i_start.y = start.y;
 	if (params.len < 10)
 	{
-		my_mlx_pixel_put(data, start.x, start.y, 0x0000FF);
+		my_mlx_pixel_put(d, start.x, start.y, 0x0000FF);
 		return ;
 	}
-	color_tree(params.len, data);
+	color_tree(params.len, d);
 	f_end.x = start.x + params.len * cos(M_PI * params.a / 180);
 	f_end.y = start.y - params.len * sin(M_PI * params.a / 180);
 	i_end.x = f_end.x;
 	i_end.y = f_end.y;
-	draw_line(data, &i_start, &i_end);
+	draw_line(d, &i_start, &i_end);
 	params.len *= 0.75;
 	params.a = params.a - params.b;
-	tree(data, f_end, params);
+	tree(d, f_end, params);
 	params.b *= -1;
-	tree(data, f_end, params);
-	// printf("x:%f y:%f\n", f_end.x, f_end.y);
+	tree(d, f_end, params);
 }
 
-int	treeinit(t_data *data)
+int	treeinit(t_d *d)
 {
-	data->point1.x = WINDOW_WIDTH / 2;
-	data->point1.y = WINDOW_HEIGHT - 40;
-	data->color = 0x00FFFF;
-	data->params.len = 115;
-	data->params.a = 90;
-	data->params.b = 30;
+	d->point1.x = WIDTH / 2;
+	d->point1.y = HEIGHT - 40;
+	d->color = 0x00FFFF;
+	d->params.len = 115;
+	d->params.a = 90;
+	d->params.b = 30;
 	return (0);
 }

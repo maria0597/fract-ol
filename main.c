@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 21:26:38 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:27:47 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,28 @@ And so on to viscosity
 
 int	main(void)
 {
-	t_data	data;
+	t_d	d;
 
-	treeinit(&data);
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
+	treeinit(&d);
+	d.mlx_ptr = mlx_init();
+	if (d.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-								"tree");
-	data.img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data.addr = mlx_get_data_addr(data.img, &data.btx, &data.ll, &data.en);
-	if (data.win_ptr == NULL)
+	d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, "tree");
+	d.img = mlx_new_image(d.mlx_ptr, WIDTH, HEIGHT);
+	d.addr = mlx_get_data_addr(d.img, &d.btx, &d.ll, &d.en);
+	if (d.win_ptr == NULL)
 	{
-		free(data.win_ptr);
+		free(d.win_ptr);
 		return (MLX_ERROR);
 	}
-	tree(&data, data.point1, data.params);
-	data.params.b *= -1;
-	tree(&data, data.point1, data.params);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
-	mlx_key_hook(data.win_ptr, key_hook, &data);
-	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
-	mlx_loop_hook(data.mlx_ptr, main_loop, &data);
-	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
-	mlx_loop(data.mlx_ptr);
-	free(data.mlx_ptr);
+	tree(&d, d.point1, d.params);
+	d.params.b *= -1;
+	tree(&d, d.point1, d.params);
+	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
+	mlx_key_hook(d.win_ptr, key_hook, &d);
+	mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
+	mlx_loop_hook(d.mlx_ptr, main_loop, &d);
+	mlx_hook(d.win_ptr, 17, 0, close_window, &d);
+	mlx_loop(d.mlx_ptr);
+	free(d.mlx_ptr);
 }
