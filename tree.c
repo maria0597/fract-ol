@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/18 12:04:40 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:39:04 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,32 @@ https://larryriddle.agnesscott.org/ifs/pythagorean/symbinarytreeShape.htm
 
 #include "fractol.h"
 
+void color_tree(int cc, t_data *data)
+{
+	 if (cc == 20)
+       	data->color = 0x00b8b2;
+    else if (cc == 19)
+        data->color = (0x00b89e);
+    else if (cc == 18)
+        data->color = (0x76b874);
+    else if (cc == 17)
+        data->color = (0xa0b85e);
+    else if (cc == 16)
+        data->color = (0xc6b644);
+    else if (cc == 15)
+        data->color = (0xfeb500);
+    else if (cc == 14)
+        data->color = (0xff8c00);
+    else if (cc == 13)
+        data->color = (0xfb7700);
+    else if (cc == 12)
+        data->color = (0xec4e02);
+    else if (cc == 11)
+        data->color = (0xFC0909);
+    else if (cc == 10)
+        data->color = (0xdf210b);
+}
+
 void	tree(t_data *data, t_f_pnt start, t_itr_prms params)
 {
 	t_f_pnt	f_end;
@@ -43,11 +69,12 @@ void	tree(t_data *data, t_f_pnt start, t_itr_prms params)
 
 	i_start.x = start.x;
 	i_start.y = start.y;
-	if (params.len < 5)
+	if (params.len < 10)
 	{
-		my_mlx_pixel_put(data, start.x, start.y, 0xFF0000);
+		my_mlx_pixel_put(data, start.x, start.y, 0x0000FF);
 		return ;
 	}
+	color_tree(params.len, data);
 	f_end.x = start.x + params.len * cos(M_PI * params.a / 180);
 	f_end.y = start.y - params.len * sin(M_PI * params.a / 180);
 	i_end.x = f_end.x;

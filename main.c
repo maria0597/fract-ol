@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/18 07:38:56 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:09:20 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(void)
 	tree(&data, data.point1, data.params);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_key_hook(data.win_ptr, key_hook, &data);
+	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
 	mlx_loop_hook(data.mlx_ptr, main_loop, &data);
 	mlx_hook(data.win_ptr, 17, 0, close_window, &data);
 	mlx_loop(data.mlx_ptr);
