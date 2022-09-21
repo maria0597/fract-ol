@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 22:31:10 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/21 05:37:45 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ int	treeinit(t_d *d)
 	d->params.len = 115;
 	d->params.a = 90;
 	d->params.b = 30;
+	d->x = 0;
+	d->y = 0;
 	return (0);
 }

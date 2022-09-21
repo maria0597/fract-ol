@@ -1,6 +1,6 @@
 NAME = fractol
 
-CC = gcc -g
+CC = gcc
 
 RM = rm -rf
 
@@ -8,7 +8,7 @@ FLAGS = -Wall -Wextra -Werror
 
 FLAGS2 = -lmlx -framework OpenGL -framework AppKit
 
-SRC = draw_utils.c hook.c tree.c main.c
+SRC = draw_utils.c hook.c tree.c main.c mandelbrot.c
 
 OBJS = $(SRC:.c=.o)
 

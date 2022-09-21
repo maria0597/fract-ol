@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/19 22:26:03 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/21 08:17:33 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define WIDTH 600
 # define HEIGHT 500
+# define MAX_ITERATIONS 80
 
 # define MLX_ERROR 1
 
@@ -53,8 +54,10 @@ typedef struct	s_d
 	int			ll;
 	int			en;
 	int 		color;
-	int			rt;
+	int			rt;                                                                                   
 	int			zoom;
+	float		x;
+	float 		y;
 	t_f_pnt		point1;
 	t_itr_prms	params;
 }				t_d;
@@ -70,5 +73,9 @@ int			key_hook(int keycode, t_d *d);
 int			mouse_hook(int button, int x, int y, t_d *d);
 void		color_tree(int cc, t_d *d);
 void		clear(t_d *d);
+double		real_coordinate(t_d *d, int i, char axis);
+void		mandelbr(t_d *d);
+int 		mandel_init(t_d *d);
+void		square_complex(double *re, double *im);
 
 #endif
