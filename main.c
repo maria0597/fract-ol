@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/21 08:20:41 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:52:11 by blackronos       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 	// tree(&d, d.point1, d.params);
 	// d.params.b *= -1;
 	// tree(&d, d.point1, d.params);
-	mandelbr(&d);
+	//mandelbr(&d);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
 	// mlx_key_hook(d.win_ptr, key_hook, &d);
 	// mlx_mouse_hook(d.win_ptr, mouse_hook, &d);

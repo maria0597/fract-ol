@@ -3,12 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/21 02:07:49 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:52:15 by blackronos       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+
+"Take the universe and grind it down to the finest powder and sieve it through 
+the finest sieve and then show me one atom of justice, one molecule of mercy. 
+And yet," Death waved a hand, "And yet you act as if there is some ideal order 
+in the world, as if there is some… some rightness in the universe by which 
+it may be judged."
+
+@TheHogfather
+
+*/
 
 #include "fractol.h"
 

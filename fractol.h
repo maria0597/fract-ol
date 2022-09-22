@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/21 08:17:33 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/22 11:21:27 by blackronos       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_f_point
 {
 	float	x;
 	float	y;
+	float	c_re;
+	float	c_im;
 } 				t_f_pnt;
 
 typedef struct	s_itr_prms
@@ -42,6 +44,8 @@ typedef struct	s_itr_prms
 	float	len;
 	int		a;
 	int		b;
+	int		row;
+	int		col;
 }				t_itr_prms;
 
 typedef struct	s_d 
@@ -63,6 +67,7 @@ typedef struct	s_d
 }				t_d;
 
 void		tree(t_d *d, t_f_pnt start, t_itr_prms params);
+void		mandelbr(t_d *d, t_f_pnt start, t_itr_prms params);
 void		my_mlx_pixel_put(t_d *d, int x, int y, int color);
 void		draw_line(t_d *d, t_i_pnt *begin, t_i_pnt *end);
 void		retrydraw(t_d *d);
@@ -73,9 +78,8 @@ int			key_hook(int keycode, t_d *d);
 int			mouse_hook(int button, int x, int y, t_d *d);
 void		color_tree(int cc, t_d *d);
 void		clear(t_d *d);
-double		real_coordinate(t_d *d, int i, char axis);
-void		mandelbr(t_d *d);
+//double		real_coordinate(t_d *d, int i, char axis);
 int 		mandel_init(t_d *d);
-void		square_complex(double *re, double *im);
+//void		square_complex(double *re, double *im);
 
 #endif

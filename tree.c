@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/21 05:37:45 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:52:12 by blackronos       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ these two branchs forms the trunk of a subtree splits into two more branches,
 following the same rule. 
 So the branch of length r1 splits into one branch that has length r1ˆ2 
 and forms an angle of a, with the affine hull of the branch of length r1r2 and 
-forms an angle of b with the affine hull of the branch of length r1. The binary 
-tree is the object obtained by applying the branching process
+forms an angle of b with the affine hull of the branch of length r1. 
+The binary tree is the object obtained by applying the branching process
 ad infinitum.
 
 Useful links:
