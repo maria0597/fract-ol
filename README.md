@@ -36,6 +36,6 @@ raddoppiandolo, dimezzandolo o qualsiasi altra via di mezzo.
 
 <sub> 
 Operazioni più complicate vengono utilizzate ad esempio per modellare le onde elettromagnetiche, siano esse radio FM, pacchetti wifi o flussi ADSL. Ciò richiede un
-controllo preciso delle frequenze che stai generando e ricevendo. Farlo senza numeri complessi, beh, fa solo schifo. Allora perché usare noiosi numeri reali, quando i
-numeri complessi possono fare il lavoro per te? 
+controllo preciso delle frequenze che stai generando e ricevendo. Farlo senza numeri complessi, beh, fa solo schifo. 
+Allora perché usare noiosi numeri reali, quando i numeri complessi possono fare il lavoro per te? 
 </sub>
