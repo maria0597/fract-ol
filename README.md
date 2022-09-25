@@ -9,7 +9,7 @@ per il nostro piacere e magari anche per il nostro sbalordimento, a larghe branc
 conoscenza."
 @Wigner
 
-Frattale: dal greco fractus = <<interrotto>> <<irregolare>>, forma estremamente frammentata che
+Frattale: dal greco fractus = <interrotto> <irregolare>, forma estremamente frammentata che
 rimane tale qualunque sia la scala a cui la si esamina contenente degli elementi distintivi le
 cui scale sono molto varie e coprono una gamma molto larga.
 
@@ -17,7 +17,7 @@ Omotetia: trasformazione lineare che dilata (o contrae) simultaneamente tutti i 
 dello spazio (o, più in generale, dello spazio euclideo di ordine n), moltiplicandoli per un numero
 reale maggiore di zero. Va osservato che, mentre per le figure regolari questa terminologia ha la 
 chiarezza e la precisione necessarie, quando si ha a che fare con oggetti irregolari si parla di 
-omotetia in senso statistico. In ogni caso, l'espressione <<omotetia interna>> è la più adeguata
-a rendere, nel linguaggio della geometria frattale, quell'idea di <<autosomiglianza>> corrispondente
+omotetia in senso statistico. In ogni caso, l'espressione <omotetia interna> è la più adeguata
+a rendere, nel linguaggio della geometria frattale, quell'idea di <autosomiglianza> corrispondente
 della parola inglese self-similarity.
  
