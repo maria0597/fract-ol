@@ -19,6 +19,10 @@ And so on to viscosity
 (in the mulecolar sense).
 
 @Richardson
+
+Useful links:
+https://acko.net/blog/how-to-fold-a-julia-fractal/
+
 */
 
 #include "fractol.h"
