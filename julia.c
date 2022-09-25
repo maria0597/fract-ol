@@ -14,7 +14,7 @@
 
 In complex dynamics, the object of central interest in the dynamical plane is 
 the Julia set. For the family Pc, there is an open neighborhood of infinitum in 
-the Reinmann sphere consisting of points whose orbits tend to infinitum. 
+the Riemann sphere consisting of points whose orbits tend to infinitum. 
 The set of all points whose orbits tend to infinitum is called the basin of 
 infinitum.Then the Julia set, deboted by J(Pc) is the boundary of the basin.
 Julia set is the chaotic set.
