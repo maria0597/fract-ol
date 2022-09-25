@@ -21,3 +21,15 @@ omotetia in senso statistico. In ogni caso, l'espressione **"omotetia interna"**
 a rendere, nel linguaggio della geometria frattale, quell'idea di "autosomiglianza" corrispondente
 della parola inglese **self-similarity**.
  
+<sub> Fare frattali è probabilmente l'applicazione meno utile della matematica complessa, ma è innegabilmente affascinante. Rivela anche le proprietà uniche di operazioni
+complesse, come la mappatura conforme, che forniscono una certa rigidità al risultato.
+
+Tuttavia, per rendere pratica la matematica complessa, dobbiamo capire come collegarla al mondo reale.
+Ogni volta che descriviamo fenomeni ondulatori, che si tratti di suono, elettricità o particelle subatomiche, siamo anche interessati a come l'onda si evolve e cambia.
+Le operazioni complesse sono particolarmente adatte a questo, perché si svolgono naturalmente su cerchi. I numeri che si oppongono possono annullarsi, i numeri nella
+stessa direzione si amplificheranno a vicenda, proprio come fanno due onde quando si incontrano. E piegando o spiegando, possiamo alterare la frequenza di un modello,
+raddoppiandolo, dimezzandolo o qualsiasi altra via di mezzo.
+
+Operazioni più complicate vengono utilizzate ad esempio per modellare le onde elettromagnetiche, siano esse radio FM, pacchetti wifi o flussi ADSL. Ciò richiede un
+controllo preciso delle frequenze che stai generando e ricevendo. Farlo senza numeri complessi, beh, fa solo schifo. Allora perché usare noiosi numeri reali, quando i
+numeri complessi possono fare il lavoro per te? </sub>
