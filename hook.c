@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/21 03:05:29 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:00:00 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ int	mouse_hook(int button, int x, int y, t_d *d)
 	return (0);
 }
 
-void configure_hook(t_d *d)
-{
-	mlx_key_hook(d->win_ptr, key_hook, &d);
-	mlx_mouse_hook(d->win_ptr, mouse_hook, &d);
-	mlx_loop_hook(d->mlx_ptr, main_loop, &d);
-	mlx_hook(d->win_ptr, 17, 0, close_window, &d);
-}
+// void configure_hook(t_d *d)
+// {
+// 	mlx_key_hook(d->win_ptr, key_hook, &d);
+// 	mlx_mouse_hook(d->win_ptr, mouse_hook, &d);
+// 	mlx_loop_hook(d->mlx_ptr, main_loop, &d);
+// 	mlx_hook(d->win_ptr, 17, 0, close_window, &d);
+// 	mlx_loop(d->mlx_ptr);
+// }

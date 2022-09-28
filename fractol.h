@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/27 22:12:21 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/28 11:12:02 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct	s_d
 	int			ll;
 	int			en;
 	int 		color;
-	int			rt;                                                                                   
+	int			rt;
 	int			zoom;
 	float		x;
 	float 		y;
@@ -84,7 +84,7 @@ typedef struct	s_d
 }				t_d;
 
 void		tree(t_d *d, t_f_pnt start, t_itr_prms params);
-void		mandelbr(t_d *d, t_f_pnt start, t_itr_prms params);
+// int			mandelbr(t_d *d, t_f_pnt start, t_itr_prms params);
 void		my_mlx_pixel_put(t_d *d, int x, int y, int color);
 void		draw_line(t_d *d, t_i_pnt *begin, t_i_pnt *end);
 void		retrydraw(t_d *d);
@@ -97,8 +97,8 @@ void		color_tree(int cc, t_d *d);
 void		clear(t_d *d);
 void 		configure_hook(t_d *d);
 //double		real_coordinate(t_d *d, int i, char axis);
-int 		mandel_init(t_d *d);
-void		mlx_fun(void);
+// int 		mandel_init(t_d *d);
+// void		mlx_fun(void);
 //void		square_complex(double *re, double *im);
 
 #endif
