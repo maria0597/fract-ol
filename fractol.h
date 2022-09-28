@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/22 11:21:27 by blackronos       ###   ########.fr       */
+/*   Updated: 2022/09/27 22:12:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,26 @@ typedef struct	s_f_point
 {
 	float	x;
 	float	y;
-	float	c_re;
-	float	c_im;
 } 				t_f_pnt;
+
+/*
+	Take z being a complex number:
+		z = a + b*i
+	
+	Note:
+		i = sqrt(-1)
+		i * i = -1
+	
+	Useful link: https://acko.net/blog/how-to-fold-a-julia-fractal/
+
+	a	: the real part of the complex number, moving on the x axis (Re)
+	b	: the imaginary part (Im) of the complex number, moving on the y axis (Im)
+*/
+typedef struct s_complex
+{
+	float	re;
+	float	im;
+}			t_complex;
 
 typedef struct	s_itr_prms
 {
@@ -78,8 +95,10 @@ int			key_hook(int keycode, t_d *d);
 int			mouse_hook(int button, int x, int y, t_d *d);
 void		color_tree(int cc, t_d *d);
 void		clear(t_d *d);
+void 		configure_hook(t_d *d);
 //double		real_coordinate(t_d *d, int i, char axis);
 int 		mandel_init(t_d *d);
+void		mlx_fun(void);
 //void		square_complex(double *re, double *im);
 
 #endif

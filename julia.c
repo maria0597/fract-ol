@@ -245,3 +245,11 @@ int	deal_key(int key, void *param)
 	}
 	return (0);
 }
+
+
+void	fast_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	//x += WIDTH / 2;
+	//y += HEIGHT / 2;
+	img->addr[y * WIDTH + x] = color;
+}

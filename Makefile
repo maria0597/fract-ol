@@ -8,7 +8,7 @@ FLAGS = -Wall -Wextra -Werror
 
 FLAGS2 = -lmlx -framework OpenGL -framework AppKit
 
-SRC = draw_utils.c hook.c tree.c main.c mandelbrot.c
+SRC = *.c
 
 OBJS = $(SRC:.c=.o)
 

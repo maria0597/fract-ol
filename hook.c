@@ -63,3 +63,11 @@ int	mouse_hook(int button, int x, int y, t_d *d)
 	}
 	return (0);
 }
+
+void configure_hook(t_d *d)
+{
+	mlx_key_hook(d->win_ptr, key_hook, &d);
+	mlx_mouse_hook(d->win_ptr, mouse_hook, &d);
+	mlx_loop_hook(d->mlx_ptr, main_loop, &d);
+	mlx_hook(d->win_ptr, 17, 0, close_window, &d);
+}

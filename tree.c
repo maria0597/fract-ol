@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/22 13:52:12 by blackronos       ###   ########.fr       */
+/*   Updated: 2022/09/27 22:06:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
 /*
 
 A binary fractal tree T(r1,r2,a,b) is specified by four parameters. The first 2 
@@ -32,8 +33,32 @@ Useful links:
 https://www.math.union.edu/research/fractaltrees/
 https://larryriddle.agnesscott.org/ifs/pythagorean/symbinarytreeShape.htm
 */
+void	tree(t_d *d, t_f_pnt start, t_itr_prms params)
+{
+	t_f_pnt	f_end;
+	t_i_pnt	i_end;
+	t_i_pnt	i_start;
 
-#include "fractol.h"
+	i_start.x = start.x;
+	i_start.y = start.y;
+	if (params.len < 10)
+	{
+		my_mlx_pixel_put(d, start.x, start.y, 0x0000FF);
+		return ;
+	}
+	color_tree(params.len, d);
+	f_end.x = start.x + params.len * cos(M_PI * params.a / 180);
+	f_end.y = start.y - params.len * sin(M_PI * params.a / 180);
+	i_end.x = f_end.x;
+	i_end.y = f_end.y;
+	draw_line(d, &i_start, &i_end);
+	params.len *= 0.75;
+	params.a = params.a - params.b;
+	tree(d, f_end, params);
+	params.b *= -1;
+	tree(d, f_end, params);
+}
+
 
 void	color_tree(int cc, t_d *d)
 {
@@ -59,32 +84,6 @@ void	color_tree(int cc, t_d *d)
 		d->color = (0xFC0909);
 	else if (cc == 10)
 		d->color = (0xdf210b);
-}
-
-void	tree(t_d *d, t_f_pnt start, t_itr_prms params)
-{
-	t_f_pnt	f_end;
-	t_i_pnt	i_end;
-	t_i_pnt	i_start;
-
-	i_start.x = start.x;
-	i_start.y = start.y;
-	if (params.len < 10)
-	{
-		my_mlx_pixel_put(d, start.x, start.y, 0x0000FF);
-		return ;
-	}
-	color_tree(params.len, d);
-	f_end.x = start.x + params.len * cos(M_PI * params.a / 180);
-	f_end.y = start.y - params.len * sin(M_PI * params.a / 180);
-	i_end.x = f_end.x;
-	i_end.y = f_end.y;
-	draw_line(d, &i_start, &i_end);
-	params.len *= 0.75;
-	params.a = params.a - params.b;
-	tree(d, f_end, params);
-	params.b *= -1;
-	tree(d, f_end, params);
 }
 
 int	treeinit(t_d *d)

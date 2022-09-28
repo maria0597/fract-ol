@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/22 13:52:11 by blackronos       ###   ########.fr       */
+/*   Updated: 2022/09/27 22:09:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ And so on to viscosity
 
 @Richardson
 
-Useful links:
-https://acko.net/blog/how-to-fold-a-julia-fractal/
-
 */
 
 #include "fractol.h"
@@ -31,28 +28,30 @@ int	main(void)
 {
 	t_d	d;
 
-	// treeinit(&d);
+	//treeinit(&d);
 	mandel_init(&d);
-	d.mlx_ptr = mlx_init();
-	if (d.mlx_ptr == NULL)
-		return (MLX_ERROR);
-	d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, "Welcome to the jungle");
-	d.img = mlx_new_image(d.mlx_ptr, WIDTH, HEIGHT);
-	d.addr = mlx_get_data_addr(d.img, &d.btx, &d.ll, &d.en);
+	//d.mlx_ptr = mlx_init();
+	//if (d.mlx_ptr == NULL)
+	//	return (MLX_ERROR);
+	//d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, "Welcome to the jungle");
+	//d.img = mlx_new_image(d.mlx_ptr, WIDTH, HEIGHT);
+	//d.addr = mlx_get_data_addr(d.img, &d.btx, &d.ll, &d.en);
 	if (d.win_ptr == NULL)
 	{
 		free(d.win_ptr);
 		return (MLX_ERROR);
 	}
-	// tree(&d, d.point1, d.params);
-	// d.params.b *= -1;
-	// tree(&d, d.point1, d.params);
+	mlx_fun();
+	//tree(&d, d.point1, d.params);
+	//d.params.b *= -1;
+	//tree(&d, d.point1, d.params);
 	//mandelbr(&d);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
-	// mlx_key_hook(d.win_ptr, key_hook, &d);
-	// mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
+	//mlx_key_hook(d.win_ptr, key_hook, &d);
+	//mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
 	//mlx_loop_hook(d.mlx_ptr, main_loop, &d);
-	mlx_hook(d.win_ptr, 17, 0, close_window, &d);
+	//mlx_hook(d.win_ptr, 17, 0, close_window, &d);
+	configure_hook();
 	mlx_loop(d.mlx_ptr);
 	free(d.mlx_ptr);
 }
