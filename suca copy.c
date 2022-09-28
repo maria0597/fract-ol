@@ -37,18 +37,12 @@ typedef struct	s_f_point
 */
 typedef struct s_complex
 {
-	float	MinRe;
-	float	MaxRe;
-	float	MinIm;
-	float	MaxImm;
-	float	Re_factor;
-	float	Im_factor;
-	float	c_im;
-	float	c_re;
-	float	Z_re;
-	float	Z_im;
-	float	Z_re2;
-	float	Z_im2;
+	double		cre;
+	double		cim;
+	double		newre;
+	double		newim;
+	double		oldre;
+	double		oldim;
 }			t_complex;
 
 typedef struct	s_d 
@@ -67,6 +61,7 @@ typedef struct	s_d
 	float 		y;
 	int			isInside;
 	unsigned	n;
+	double		zoom;
 }				t_d;
 
 void	my_mlx_pixel_put(t_d *d, int x, int y, int color)
@@ -77,53 +72,64 @@ void	my_mlx_pixel_put(t_d *d, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void mandelbrot(t_d *d, t_complex *reim)
+void	julia_init(t_d *d, t_complex *reim)
 {
-	while(d->y < HEIGHT)
-	{
-		reim->c_im = reim->MaxImm - d->y * reim->Im_factor;
-		d->x = 0;
-		while(d->x < WIDTH)
-		{
-			reim->c_re = reim->MinRe + d->x * reim->Re_factor;
-			reim->Z_re = reim->c_re; 
-			reim->Z_im = reim->c_im;
-			d->isInside = 1;
-			d->n = 0;
-			while(d->n < MAX_ITERATIONS)
-			{
-				reim->Z_re2 = reim->Z_re * reim->Z_re;
-				reim->Z_im2 = reim->Z_im * reim->Z_im;
-				if(reim->Z_re2 + reim->Z_im2 > 4)
-				{
-					d->isInside = 0;
-					break;
-				}
-				reim->Z_im = 2 * reim->Z_re * reim->Z_im + reim->c_im;
-				reim->Z_re = reim->Z_re2 - reim->Z_im2 + reim->c_re;
-				++d->n;
-			}
-			if(d->isInside) 
-				my_mlx_pixel_put(d, d->x, d->y, 0xFFFFFF);
-		++d->x;
-		}
-	++d->y;
-	}
-//	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img, 0, 0);
+	d->color = 0x006600;
+	reim->cre = -0.7;
+	reim->cim = 0.27015;
+	reim->newre = 0;
+	reim->newim = 0;
+	reim->oldre = 0;
+	reim->oldim = 0;
+	julia(d, reim);
 }
 
-int mandel_init(t_d *d, t_complex *reim)
+/*
+** number of iterations
+*/
+
+int		julia_n(t_complex *reim)
+{
+	int i;
+
+	i = 0;
+	while (i < MAX_ITERATIONS && reim->newre * reim->newre +
+		reim->newim * reim->newim < 4)
+	{
+		reim->oldre = reim->newre;
+		reim->oldim = reim->newim;
+		reim->newre = reim->oldre * reim->oldre - reim->oldim *
+			reim->oldim + reim->cre;
+		reim->newim = 2 * reim->oldre * reim->oldim + reim->cim;
+		i++;
+	}
+	return (i);
+}
+
+void	julia(t_d *d, t_complex *reim)
 {
 	d->n = 0;
-	d->x = 0;
-	d->y = 0;
-	reim->MinRe = -2.0;
-	reim->MaxRe = 1.0;
-	reim->MinIm = -1.2;
-	reim->MaxImm = reim->MinIm + (reim->MaxRe - reim->MinRe) * HEIGHT / WIDTH;
-	reim->Re_factor = (reim->MaxRe - reim->MinRe) / (WIDTH - 1);
-	reim->Im_factor = (reim->MaxImm - reim->MinIm) / (HEIGHT - 1);
-	return 0;
+	d->x = 100;
+	d->y = 100;
+	mlx_string_put(d->mlx_ptr, d->win_ptr, 500, 40, 0xffffff, "Julia");
+	while (d->y < HEIGHT)
+	{
+		while (d->x < WIDTH)
+		{
+			reim->newre = 1.5 * (d->x - WIDTH / 2) / (0.3 * d->zoom *
+				WIDTH);
+			reim->newim = (y - HEIGHT / 2) / (0.3 * d->zoom *
+				HEIGHT);
+			d->n = julia_n(d);
+			if (d->n < MAX_ITERATIONS)
+				my_mlx_pixel_put(d->mlx_ptr, d->win_ptr, d->x, d->y,
+					(d->color * n / 100));
+			d->x++;
+		}
+		d->y++;
+		d->x = 100;
+	}
+	//mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img, 0, 0);
 }
 
 int	main(void)
@@ -131,8 +137,7 @@ int	main(void)
 	t_d	d;
 	t_complex reim;
 
-	// mandel_init(&d);
-	mandel_init(&d, &reim);
+	julia_init(&d, &reim);
 	d.mlx_ptr = mlx_init();
 	if (d.mlx_ptr == NULL)
 		return (MLX_ERROR);
@@ -145,7 +150,7 @@ int	main(void)
 		return (MLX_ERROR);
 	}
 	// mlx_fun();
-	mandelbrot(&d, &reim);
+	julia(&d, &reim);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
 	// mlx_key_hook(d.win_ptr, key_hook, &d);
 	// mlx_mouse_hook(d.win_ptr, mouse_hook, &d);

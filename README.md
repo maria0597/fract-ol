@@ -1,3 +1,5 @@
+# Fractol-42
+
 *"Delle grandezze, quella che ha una dimensione è la linea, 
 quella che ne ha due è superficie, quella che ne ha tre è corpo, 
 e al di fuori di queste non si hanno altre grandezze..."*
