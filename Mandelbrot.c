@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 03:13:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 18:44:32 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 20:43:15 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,32 @@ void	mandelbrot(t_d *d, t_complex *reim)
 			reim->Z_re = reim->c_re;
 			reim->Z_im = reim->c_im;
 			d->isInside = 1;
-			d->n = 0;
-			while (d->n < MAX_ITERATIONS)
-			{
-				reim->Z_re2 = reim->Z_re * reim->Z_re;
-				reim->Z_im2 = reim->Z_im * reim->Z_im;
-				if (reim->Z_re2 + reim->Z_im2 > 4)
-				{
-					d->isInside = 0;
-					break ;
-				}
-				reim->Z_im = 2 * reim->Z_re * reim->Z_im + reim->c_im;
-				reim->Z_re = reim->Z_re2 - reim->Z_im2 + reim->c_re;
-				++d->n;
-			}
+			mandel_n(d, reim);
 			if (d->isInside)
 				my_mlx_pixel_put(d, d->x, d->y, 0xFFFFFF);
 		++d->x;
 		}
 	++d->y;
 	}
+}
+
+int	mandel_n(t_d *d, t_complex *reim)
+{
+	int	i;
+
+	i = 0;
+	while (i < MAX_ITERATIONS)
+	{
+		reim->Z_re2 = reim->Z_re * reim->Z_re;
+		reim->Z_im2 = reim->Z_im * reim->Z_im;
+		if (reim->Z_re2 + reim->Z_im2 > 4)
+		{
+			d->isInside = 0;
+			break ;
+		}
+		reim->Z_im = 2 * reim->Z_re * reim->Z_im + reim->c_im;
+		reim->Z_re = reim->Z_re2 - reim->Z_im2 + reim->c_re;
+		i++;
+	}
+	return (i);
 }
