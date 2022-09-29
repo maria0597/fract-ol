@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 18:02:12 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:53:04 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	treeinit(t_d *d)
 	return (0);
 }
 
-int mandel_init(t_d *d, t_complex *reim)
+int	mandel_init(t_d *d, t_complex *reim)
 {
 	d->n = 0;
 	d->x = 0;
@@ -36,7 +36,7 @@ int mandel_init(t_d *d, t_complex *reim)
 	reim->MaxImm = reim->MinIm + (reim->MaxRe - reim->MinRe) * HEIGHT / WIDTH;
 	reim->Re_factor = (reim->MaxRe - reim->MinRe) / (WIDTH - 1);
 	reim->Im_factor = (reim->MaxImm - reim->MinIm) / (HEIGHT - 1);
-	return 0;
+	return (0);
 }
 
 void	julia_init(t_d *d, t_complex *reim)

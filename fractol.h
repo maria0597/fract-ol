@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:37:37 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:33:54 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define WIDTH 600
 # define HEIGHT 500
-# define MAX_ITERATIONS 80
+# define MAX_ITERATIONS 50
 # define TITLE "Welcome to the Jungle"
 
 # define MLX_ERROR 1
@@ -122,9 +122,9 @@ void			color_tree(int cc, t_d *d);
 void			clear(t_d *d);
 void 			configure_hook(t_d *d);
 //double		real_coordinate(t_d *d, int i, char axis);
-// int 		mandel_init(t_d *d);
-// void		mlx_fun(void);
-//void		square_complex(double *re, double *im);
+//int 			mandel_init(t_d *d);
+//void			mlx_fun(void);
+//void			square_complex(double *re, double *im);
 int				julia_n(t_complex *reim);
 void			julia(t_d *d, t_complex *reim);
 void			julia_init(t_d *d, t_complex *reim);

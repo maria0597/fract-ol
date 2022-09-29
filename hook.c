@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:27:22 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:46:49 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	key_hook(int keycode, t_d *d)
 
 int	mouse_hook(int button, int x, int y, t_d *d)
 {
-
 	x -= WIDTH / 2;
 	y -= HEIGHT / 2;
 	printf("%d %d\n", x, y);

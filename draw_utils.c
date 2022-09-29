@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:27:29 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:47:20 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	draw_line(t_d *d, t_i_pnt *begin, t_i_pnt *end)
 	while (pixels)
 	{
 		if (end->x > WIDTH || pixelx >= WIDTH || pixely >= HEIGHT)
-			break;
+			break ;
 		if (end->x <= 0 || pixelx < 0 || pixely < 0)
-			break;
+			break ;
 		my_mlx_pixel_put(d, pixelx, pixely, d->color);
 		pixelx += deltax;
 		pixely += deltay;
@@ -87,6 +87,7 @@ unsigned int	colormagic(int i, double x, double y)
 	double			magic;
 	double			i2;
 	t_c				c;
+
 	magic = sqrt(x * x + y * y);
 	i2 = i + 1 - (log(2) / magic) / log(2);
 	c.chan[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);

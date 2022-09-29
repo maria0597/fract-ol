@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:59:27 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:40:43 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ region in which all points tend to the neutral cycle. These type of
 periodic points are called parabolic points.
 
 */
-int		julia_n(t_complex *reim)
+int	julia_n(t_complex *reim)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < MAX_ITERATIONS && reim->newre * reim->newre +
-		reim->newim * reim->newim < 4)
+	while (i < MAX_ITERATIONS
+		&& reim->newre * reim->newre + reim->newim * reim->newim < 4)
 	{
 		reim->oldre = reim->newre;
 		reim->oldim = reim->newim;
-		reim->newre = reim->oldre * reim->oldre - reim->oldim *
-			reim->oldim + reim->cre;
+		reim->newre = reim->oldre * reim->oldre - \
+			reim->oldim * reim->oldim + reim->cre;
 		reim->newim = 2 * reim->oldre * reim->oldim + reim->cim;
 		i++;
 	}
@@ -53,11 +53,11 @@ void	julia(t_d *d, t_complex *reim)
 	while (++d->y < HEIGHT - 20)
 	{
 		d->x = -1;
-		while (++d->x < WIDTH  - 20)
+		while (++d->x < WIDTH - 20)
 		{
-			reim->newre = 1.5 * (d->x - WIDTH / 2) /
+			reim->newre = 1.5 * (d->x - WIDTH / 2) / \
 				(0.5 * d->zoom * WIDTH) + d->movex;
-			reim->newim = (d->y - HEIGHT / 2) /
+			reim->newim = (d->y - HEIGHT / 2) / \
 				(0.5 * d->zoom * HEIGHT) + d->movey;
 			d->n = -1;
 			while (++d->n < MAX_ITERATIONS)
@@ -67,7 +67,7 @@ void	julia(t_d *d, t_complex *reim)
 					break ;
 			}
 			if (d->n < MAX_ITERATIONS)
-				my_mlx_pixel_put(d, d->x, d->y, (colormagic((d->n *
+				my_mlx_pixel_put(d, d->x, d->y, (colormagic((d->n * \
 					d->color), d->x, d->y)));
 			else
 				my_mlx_pixel_put(d, d->x, d->y, 0x000000);

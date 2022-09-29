@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 18:06:21 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:29:39 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:44:50 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	tree(t_d *d, t_f_pnt start, t_itr_prms params)
 	params.b *= -1;
 	tree(d, f_end, params);
 }
-
 
 void	color_tree(int cc, t_d *d)
 {

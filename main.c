@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 17:43:04 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:55:20 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ And so on to viscosity
 
 int	main(void)
 {
-	t_d	d;
+	t_d			d;
 	t_complex	reim;
 	
-	// mandel_init(&d, &reim);
-	julia_init(&d, &reim);
+	mandel_init(&d, &reim);
+	// julia_init(&d, &reim);
 	// treeinit(&d);
 	d.mlx_ptr = mlx_init();
 	if (d.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, "Welcome to the jungle");
+	d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, TITLE);
 	d.img = mlx_new_image(d.mlx_ptr, WIDTH, HEIGHT);
 	d.addr = mlx_get_data_addr(d.img, &d.btx, &d.ll, &d.en);
 	if (d.win_ptr == NULL)
@@ -46,8 +46,8 @@ int	main(void)
 	// tree(&d, d.point1, d.params);
 	// d.params.b *= -1;
 	// tree(&d, d.point1, d.params);
-	// mandelbrot(&d, &reim);
-	julia(&d, &reim);
+	mandelbrot(&d, &reim);
+	// julia(&d, &reim);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
 	// mlx_key_hook(d.win_ptr, key_hook, &d);
 	// mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
