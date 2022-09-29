@@ -4,7 +4,7 @@ CC = gcc
 
 RM = rm -rf
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 FLAGS2 = -lmlx -framework OpenGL -framework AppKit
 

@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/28 11:00:00 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:27:22 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,16 @@ int	mouse_hook(int button, int x, int y, t_d *d)
 		d->point1.y -= 0.5;
 		retrydraw(d);
 		mlx_loop(d->mlx_ptr);
+	}
+	return (0);
+}
+
+int	main_loop(t_d *d)
+{
+	if (d->rt == 1)
+	{
+		retrydraw(d);
+		d->rt = 0;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackronos <blackronos@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/22 13:52:15 by blackronos       ###   ########.fr       */
+/*   Updated: 2022/09/29 17:27:29 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,17 @@ void	retrydraw(t_d *d)
 	mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
 }
 
-int	main_loop(t_d *d)
+unsigned int	colormagic(int i, double x, double y)
 {
-	if (d->rt == 1)
-	{
-		retrydraw(d);
-		d->rt = 0;
-	}
-	return (0);
+	unsigned int	color;
+	double			magic;
+	double			i2;
+	t_c				c;
+	magic = sqrt(x * x + y * y);
+	i2 = i + 1 - (log(2) / magic) / log(2);
+	c.chan[0] = (unsigned char)(sin(0.026 * i2 + 4) * 230 + 25);
+	c.chan[1] = (unsigned char)(sin(0.023 * i2 + 2) * 230 + 25);
+	c.chan[2] = (unsigned char)(sin(0.01 * i2 + 1) * 230 + 25);
+	color = (c.chan[0] << 16) + (c.chan[1] << 8) + (c.chan[2] + 255);
+	return (color);
 }
