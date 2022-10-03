@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 14:36:08 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:31:15 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	mandel_init(t_d *d)
 	d->x = 0;
 	d->y = 0;
 	d->color = 0xFFFFFF;
-	d->reim.MinRe = -2.0 * d->zoom;
-	d->reim.MaxRe = 1.0 * d->zoom;
+	d->reim.MinRe = -2.0 * d->zoom - (d->move * d->zoom);
+	d->reim.MaxRe = 1.0 * d->zoom - (d->move * d->zoom);
 	d->reim.MinIm = -1.2 * d->zoom;
-	d->reim.MaxImm = d->reim.MinIm + (d->reim.MaxRe - d->reim.MinRe) * HEIGHT / WIDTH;
+	d->reim.MaxImm = d->reim.MinIm + (d->reim.MaxRe - d->reim.MinRe) * HEIGHT / WIDTH ;
 	d->reim.Re_factor = (d->reim.MaxRe - d->reim.MinRe) / (WIDTH - 1);
 	d->reim.Im_factor = (d->reim.MaxImm - d->reim.MinIm) / (HEIGHT - 1);
 	mandelbrot(d);

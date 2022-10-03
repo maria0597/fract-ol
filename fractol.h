@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 14:38:02 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:27:00 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ the universe.
 
 # define WIDTH 600
 # define HEIGHT 500
-# define MAX_ITERATIONS 500
+# define MAX_ITERATIONS 80
 # define TITLE "Welcome to the Jungle"
 
 # define MLX_ERROR 1
@@ -138,6 +138,7 @@ typedef struct	s_d
 	float 		y;
 	float		movex;
 	float 		movey;
+	float		move;
 	int			n;
 	float		dx;
 	float		dy;

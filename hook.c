@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 14:37:19 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:38:09 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	key_hook(int keycode, t_d *d)
 	
 	if (keycode == 53)
 		close_window(d);
-	if (keycode == 124)
+	if (keycode == 125)
 	{
 		d->params.b += 1;
 		retrydraw(d);
 		mlx_loop(d->mlx_ptr);
 		d->params.b++;
 	}
-	if (keycode == 123)
+	if (keycode == 126)
 	{
 		d->params.b -= 1;
 		retrydraw(d);
@@ -47,6 +47,21 @@ int	key_hook(int keycode, t_d *d)
 	if (keycode == 69)
 	{
 		d->zoom -= 0.1;
+		clear(d);
+		mandel_init(d);
+		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+		printf("minre:%f maxre:%f\n", d->reim.MinRe, d->reim.MaxRe);
+	}
+	if (keycode == 123)
+	{
+		d->move += 0.1;
+		clear(d);
+		mandel_init(d);
+		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+	}
+	if (keycode == 124)
+	{
+		d->move -= 0.1;
 		clear(d);
 		mandel_init(d);
 		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);

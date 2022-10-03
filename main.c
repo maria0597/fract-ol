@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 14:36:15 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:27:22 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ And so on to viscosity
 int main(void)
 {
 	t_d			d;
-	// t_complex	reim;
-	
-	// d.zoom = 1;
+
 	// julia_init(&d, &reim);
 	// treeinit(&d);
 	// init_fractal(&d,&reim);
-	// mandel_init(&d);
 	d.mlx_ptr = mlx_init();
 	if (d.mlx_ptr == NULL)
 		return (MLX_ERROR);
@@ -46,6 +43,7 @@ int main(void)
 		return (MLX_ERROR);
 	}
 	d.zoom = 1;
+	d.move = 0;
 	mandel_init(&d);
 	// tree(&d, d.point1, d.params);
 	// d.params.b *= -1;
