@@ -6,11 +6,12 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 18:40:43 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:05:54 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
 /* 
 
 In complex dynamics, the object of central interest in the dynamical plane is 
@@ -29,24 +30,6 @@ region in which all points tend to the neutral cycle. These type of
 periodic points are called parabolic points.
 
 */
-int	julia_n(t_complex *reim)
-{
-	int	i;
-
-	i = 0;
-	while (i < MAX_ITERATIONS
-		&& reim->newre * reim->newre + reim->newim * reim->newim < 4)
-	{
-		reim->oldre = reim->newre;
-		reim->oldim = reim->newim;
-		reim->newre = reim->oldre * reim->oldre - \
-			reim->oldim * reim->oldim + reim->cre;
-		reim->newim = 2 * reim->oldre * reim->oldim + reim->cim;
-		i++;
-	}
-	return (i);
-}
-
 void	julia(t_d *d, t_complex *reim)
 {
 	d->y = -1;
@@ -73,4 +56,22 @@ void	julia(t_d *d, t_complex *reim)
 				my_mlx_pixel_put(d, d->x, d->y, 0x000000);
 		}
 	}
+}
+
+int	julia_n(t_complex *reim)
+{
+	int	i;
+
+	i = 0;
+	while (i < MAX_ITERATIONS
+		&& reim->newre * reim->newre + reim->newim * reim->newim < 4)
+	{
+		reim->oldre = reim->newre;
+		reim->oldim = reim->newim;
+		reim->newre = reim->oldre * reim->oldre - \
+			reim->oldim * reim->oldim + reim->cre;
+		reim->newim = 2 * reim->oldre * reim->oldim + reim->cim;
+		i++;
+	}
+	return (i);
 }

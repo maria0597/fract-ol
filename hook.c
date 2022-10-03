@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 18:46:49 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:37:19 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	close_window(t_d *d)
 
 int	key_hook(int keycode, t_d *d)
 {
+	
 	if (keycode == 53)
 		close_window(d);
 	if (keycode == 124)
@@ -35,6 +36,20 @@ int	key_hook(int keycode, t_d *d)
 		retrydraw(d);
 		mlx_loop(d->mlx_ptr);
 		d->params.b++;
+	}
+	if (keycode == 78)
+	{
+		d->zoom += 0.1;
+		clear(d);
+		mandel_init(d);
+		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+	}
+	if (keycode == 69)
+	{
+		d->zoom -= 0.1;
+		clear(d);
+		mandel_init(d);
+		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
 	}
 	return (0);
 }

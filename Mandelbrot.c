@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   Mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 03:13:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 20:43:15 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:31:13 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,45 +33,62 @@ If we zoom in to any portion of the boundary of the M, it turns out that this
 zoom is very different from any other zoom that is non-symmetric with respect
 to c → sum(c).
 
+Useful link: http://warp.povusers.org/Mandelbrot/
 */
-void	mandelbrot(t_d *d, t_complex *reim)
+
+void	mandelbrot(t_d *d)
 {
+	int n;
+	
 	while (d->y < HEIGHT)
 	{
-		reim->c_im = reim->MaxImm - d->y * reim->Im_factor;
+		d->reim.c_im = d->reim.MaxImm - d->y * d->reim.Im_factor;
 		d->x = 0;
 		while (d->x < WIDTH)
 		{
-			reim->c_re = reim->MinRe + d->x * reim->Re_factor;
-			reim->Z_re = reim->c_re;
-			reim->Z_im = reim->c_im;
+			d->reim.c_re = d->reim.MinRe + d->x * d->reim.Re_factor;
+			d->reim.Z_re = d->reim.c_re;
+			d->reim.Z_im = d->reim.c_im;
 			d->isInside = 1;
-			mandel_n(d, reim);
-			if (d->isInside)
-				my_mlx_pixel_put(d, d->x, d->y, 0xFFFFFF);
+			n = mandel_n(d);
+			if (!d->isInside)
+				my_mlx_pixel_put(d, d->x, d->y, (d->color *  n / 2 - 1));
 		++d->x;
 		}
 	++d->y;
 	}
 }
 
-int	mandel_n(t_d *d, t_complex *reim)
+int	mandel_n(t_d *d)
 {
 	int	i;
 
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		reim->Z_re2 = reim->Z_re * reim->Z_re;
-		reim->Z_im2 = reim->Z_im * reim->Z_im;
-		if (reim->Z_re2 + reim->Z_im2 > 4)
+		d->reim.Z_re2 = d->reim.Z_re * d->reim.Z_re;
+		d->reim.Z_im2 = d->reim.Z_im * d->reim.Z_im;
+		if (d->reim.Z_re2 + d->reim.Z_im2 > 4)
 		{
 			d->isInside = 0;
 			break ;
 		}
-		reim->Z_im = 2 * reim->Z_re * reim->Z_im + reim->c_im;
-		reim->Z_re = reim->Z_re2 - reim->Z_im2 + reim->c_re;
+		d->reim.Z_im = 2 * d->reim.Z_re * d->reim.Z_im + d->reim.c_im;
+		d->reim.Z_re = d->reim.Z_re2 - d->reim.Z_im2 + d->reim.c_re;
 		i++;
 	}
 	return (i);
 }
+
+// void	zoomin(int x, int y, t_a *exp)
+// {
+// 	x -= WIDTH / 2;
+// 	y -= HEIGHT / 2;
+// 	d->x2 = ((d->x - x) - WIDTH) / ((double)HEIGHT * 2);
+// 	d->y2 = ((d->y - y) - HEIGHT) / (((double)WIDTH * 2) + y);
+// 	d->zoom *= pow(1.001, 70);
+// 	d->movex -= d->x2;
+// 	d->movey -= d->y2;
+// }
+
+

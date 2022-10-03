@@ -6,10 +6,12 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 18:55:20 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:36:15 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include "fractol.h"
 /*
 
 Big whorls have little whorls,
@@ -21,17 +23,17 @@ And so on to viscosity
 @Richardson
 
 */
-
-#include "fractol.h"
-
-int	main(void)
+// int	main(int argc, char **argv)
+int main(void)
 {
 	t_d			d;
-	t_complex	reim;
+	// t_complex	reim;
 	
-	mandel_init(&d, &reim);
+	// d.zoom = 1;
 	// julia_init(&d, &reim);
 	// treeinit(&d);
+	// init_fractal(&d,&reim);
+	// mandel_init(&d);
 	d.mlx_ptr = mlx_init();
 	if (d.mlx_ptr == NULL)
 		return (MLX_ERROR);
@@ -43,15 +45,18 @@ int	main(void)
 		free(d.win_ptr);
 		return (MLX_ERROR);
 	}
+	d.zoom = 1;
+	mandel_init(&d);
 	// tree(&d, d.point1, d.params);
 	// d.params.b *= -1;
 	// tree(&d, d.point1, d.params);
-	mandelbrot(&d, &reim);
+	// mandelbrot(&d, &reim);
 	// julia(&d, &reim);
+	// whichfractol(&d, &reim);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
-	// mlx_key_hook(d.win_ptr, key_hook, &d);
-	// mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
-	// mlx_loop_hook(d.mlx_ptr, main_loop, &d);
+	mlx_key_hook(d.win_ptr, key_hook, &d);
+	mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
+	mlx_loop_hook(d.mlx_ptr, main_loop, &d);
 	mlx_hook(d.win_ptr, 17, 0, close_window, &d);
 	mlx_loop(d.mlx_ptr);
 	free(d.mlx_ptr);
