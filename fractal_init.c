@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 15:31:15 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 22:49:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	mandel_init(t_d *d)
 void	julia_init(t_d *d, t_complex *reim)
 {
 	d->color = 0x00FF00;
-	reim->cre = -0.7;
-	reim->cim = 0.27015;
-	reim->newre = 0;
-	reim->newim = 0;
-	reim->oldre = 0;
-	reim->oldim = 0;
+	d->reim.c_re = -0.7;
+	d->reim.c_im = 0.27015;
+	d->reim.Z_re = 0;
+	d->reim.Z_im = 0;
+	d->reim.Z_re2 = 0;
+	d->reim.Z_im2 = 0;
 	d->movex = 0;
 	d->movey = 0;
 	// d->zoom = 1;

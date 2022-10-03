@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   Julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/09/29 19:05:54 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 22:50:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ region in which all points tend to the neutral cycle. These type of
 periodic points are called parabolic points.
 
 */
-void	julia(t_d *d, t_complex *reim)
+void	julia(t_d *d)
 {
 	d->y = -1;
 	while (++d->y < HEIGHT - 20)
@@ -38,15 +38,15 @@ void	julia(t_d *d, t_complex *reim)
 		d->x = -1;
 		while (++d->x < WIDTH - 20)
 		{
-			reim->newre = 1.5 * (d->x - WIDTH / 2) / \
+			d->reim.Z_re = 1.5 * (d->x - WIDTH / 2) / \
 				(0.5 * d->zoom * WIDTH) + d->movex;
-			reim->newim = (d->y - HEIGHT / 2) / \
+			d->reim.Z_im = (d->y - HEIGHT / 2) / \
 				(0.5 * d->zoom * HEIGHT) + d->movey;
 			d->n = -1;
 			while (++d->n < MAX_ITERATIONS)
 			{
 				julia_n(reim);
-				if ((reim->newre * reim->newre + reim->newim) > 4)
+				if ((d->reim.Z_re * d->reim.Z_re + d->reim.Z_im) > 4)
 					break ;
 			}
 			if (d->n < MAX_ITERATIONS)
@@ -58,19 +58,19 @@ void	julia(t_d *d, t_complex *reim)
 	}
 }
 
-int	julia_n(t_complex *reim)
+int	julia_n(t_d *d)
 {
 	int	i;
 
 	i = 0;
 	while (i < MAX_ITERATIONS
-		&& reim->newre * reim->newre + reim->newim * reim->newim < 4)
+		&& d->reim.Z_re * d->reim.Z_re + d->reim.Z_im * d->reim.Z_im < 4)
 	{
-		reim->oldre = reim->newre;
-		reim->oldim = reim->newim;
-		reim->newre = reim->oldre * reim->oldre - \
-			reim->oldim * reim->oldim + reim->cre;
-		reim->newim = 2 * reim->oldre * reim->oldim + reim->cim;
+		d->reim.Z_re2 = d->reim.Z_re;
+		d->reim.Z_im2 = d->reim.Z_im;
+		d->reim.newre = d->reim.oldre * d->reim.oldre - \
+			d->reim.Z_im2 * d->reim.Z_im2 + d->reim.c_re;
+		d->reim.Z_im = 2 * d->reim.Z_re2 * d->reim.Z_im2 + d->reim->c_im;
 		i++;
 	}
 	return (i);

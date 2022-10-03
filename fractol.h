@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 15:27:00 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/03 22:40:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ typedef struct	s_f_point
 */
 typedef struct s_complex
 {
-	double		cre;
-	double		cim;
+	//double		cre;
+	//double		cim;
 	double		newre;
 	double		newim;
 	double		oldre;
@@ -162,10 +162,10 @@ int				mouse_hook(int button, int x, int y, t_d *d);
 void			color_tree(int cc, t_d *d);
 void			clear(t_d *d);
 void 			configure_hook(t_d *d);
-int				julia_n(t_complex *reim);
+int				julia_n(t_d *d);
 int 			mandel_n(t_d *d);
-void			julia(t_d *d, t_complex *reim);
-void			julia_init(t_d *d, t_complex *reim);
+void			julia(t_d *d);
+void			julia_init(t_d *d);
 void			mandelbrot(t_d *d);
 int				mandel_init(t_d *d);
 unsigned int	colormagic(int i, double x, double y);
