@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 15:27:22 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/04 23:05:56 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,22 @@ And so on to viscosity
 @Richardson
 
 */
-// int	main(int argc, char **argv)
-int main(void)
+int	main(int argc, char **argv)
 {
 	t_d			d;
 
-	// julia_init(&d, &reim);
-	// treeinit(&d);
-	// init_fractal(&d,&reim);
-	d.mlx_ptr = mlx_init();
-	if (d.mlx_ptr == NULL)
-		return (MLX_ERROR);
-	d.win_ptr = mlx_new_window(d.mlx_ptr, WIDTH, HEIGHT, TITLE);
-	d.img = mlx_new_image(d.mlx_ptr, WIDTH, HEIGHT);
-	d.addr = mlx_get_data_addr(d.img, &d.btx, &d.ll, &d.en);
-	if (d.win_ptr == NULL)
-	{
-		free(d.win_ptr);
-		return (MLX_ERROR);
-	}
+	mlx_fun(&d);
 	d.zoom = 1;
 	d.move = 0;
-	mandel_init(&d);
-	// tree(&d, d.point1, d.params);
-	// d.params.b *= -1;
-	// tree(&d, d.point1, d.params);
-	// mandelbrot(&d, &reim);
-	// julia(&d, &reim);
-	// whichfractol(&d, &reim);
+	mandel(&d);
+	if (argc < 2)
+	{
+		ft_putendl("Usage: ./fractol [julia] or [mandelbrot] or [tree]");
+		close_window(&d);
+	}
+	if (argc >= 2)
+		fract_select(argv, &d);
+	handle_args(&d, argc, argv);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
 	mlx_key_hook(d.win_ptr, key_hook, &d);
 	mlx_mouse_hook(d.win_ptr, mouse_hook, &d);
