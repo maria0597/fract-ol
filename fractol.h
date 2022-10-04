@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/03 22:40:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/04 23:07:40 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,12 @@ the universe.
 # include <unistd.h>
 # include <math.h>
 
-# define WIDTH 600
+# define WIDTH 500
 # define HEIGHT 500
-# define MAX_ITERATIONS 80
+# define MAX_ITERATIONS 60
 # define TITLE "Welcome to the Jungle"
 
 # define MLX_ERROR 1
-
-typedef struct s_color
-{
-	unsigned char	chan[3];
-}							t_c;
 
 typedef struct	s_i_point
 {
@@ -94,24 +89,18 @@ typedef struct	s_f_point
 */
 typedef struct s_complex
 {
-	//double		cre;
-	//double		cim;
-	double		newre;
-	double		newim;
-	double		oldre;
-	double		oldim;
-	double		MinRe;
-	double		MaxRe;
-	double		MinIm;
-	double		MaxImm;
-	double		Re_factor;
-	double		Im_factor;
-	double		c_im;
-	double		c_re;
-	double		Z_re;
-	double		Z_im;
-	double		Z_re2;
-	double		Z_im2;
+	float		MinRe;
+	float		MaxRe;
+	float		MinIm;
+	float		MaxImm;
+	float		Re_factor;
+	float		Im_factor;
+	float		c_im;
+	float		c_re;
+	float		Z_re;
+	float		Z_im;
+	float		Z_re2;
+	float		Z_im2;
 }			t_complex;
 
 typedef struct	s_itr_prms
@@ -134,6 +123,7 @@ typedef struct	s_d
 	int			en;
 	int 		color;
 	int			rt;
+	int			fractol;
 	float		x;
 	float 		y;
 	float		movex;
@@ -165,10 +155,24 @@ void 			configure_hook(t_d *d);
 int				julia_n(t_d *d);
 int 			mandel_n(t_d *d);
 void			julia(t_d *d);
-void			julia_init(t_d *d);
+int				mlx_fun(t_d *d);
+void			ft_putchar(char c);
+int				julia_init(t_d *d);
 void			mandelbrot(t_d *d);
 int				mandel_init(t_d *d);
-unsigned int	colormagic(int i, double x, double y);
+void			ft_putendl(char const *s);
+int				ft_strcmp(char *s1, char *s2);
+int				fract_select(char **argv, t_d *d);
+void			ft_move(t_d *d, double distance, char direction);
+void			ft_zoom(t_d *d);
+void			mandel(t_d *d);
+void			get_julia_starting_values(t_d *d, int argc, char **argv);
+double			ft_atof(char *str);
+int				skip_space_sign(char *str, int *is_neg);
+int				ft_isspace(int c);
+int				ft_isdigit(int c);
+char			*ft_strchr(const char *s, int c);
+void			handle_args(t_d *d, int argc, char **argv);
 // void			init_fractal(t_d *d, t_complex *reim);
 // void			whichfractol(t_d *d, t_complex *reim);
 
