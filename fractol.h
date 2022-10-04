@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/04 23:07:40 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/05 01:50:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,13 +167,13 @@ void			ft_move(t_d *d, double distance, char direction);
 void			ft_zoom(t_d *d);
 void			mandel(t_d *d);
 void			get_julia_starting_values(t_d *d, int argc, char **argv);
-double			ft_atof(char *str);
-int				skip_space_sign(char *str, int *is_neg);
+float			ft_atof(char *str);
+int				skip(char *str, int *neg);
 int				ft_isspace(int c);
 int				ft_isdigit(int c);
 char			*ft_strchr(const char *s, int c);
 void			handle_args(t_d *d, int argc, char **argv);
-// void			init_fractal(t_d *d, t_complex *reim);
-// void			whichfractol(t_d *d, t_complex *reim);
+void			whichfractol(t_d *d);
+int				zoom_hook(int keycode, t_d *d);
 
 #endif

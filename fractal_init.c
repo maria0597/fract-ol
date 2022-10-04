@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/04 23:37:17 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/05 01:46:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,106 +61,6 @@ int	julia_init(t_d *d)
 	return (0);
 }
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s2[i] != '\0' && s1[i] != '\0' && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-int		fract_select(char **argv, t_d *d)
-{
-	if (ft_strcmp(argv[1], "mandelbrot") == 0)
-	{
-		d->fractol = 0;
-		mandel_init(d);
-	}
-	else if (ft_strcmp(argv[1], "julia") == 0)
-	{
-		d->fractol = 1;
-		julia_init(d);
-	}
-	else if (ft_strcmp(argv[1], "tree") == 0)
-	{
-		d->fractol = 2;
-		treeinit(d);
-	}
-	return (1);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != (char)c)
-	{
-		if (!*s++)
-			return (0);
-	}
-	return ((char *)s);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
-}
-
-int	ft_isspace(int c)
-{
-	if ((c >= 9 && c <= 13) || c == ' ')
-		return (c);
-	return (0);
-}
-
-int	skip_space_sign(char *str, int *is_neg)
-{
-	int	i;
-
-	i = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			*is_neg *= -1;
-		i++;
-	}
-	return (i);
-}
-
-double	ft_atof(char *str)
-{
-	int		i;
-	double	nb;
-	int		is_neg;
-	double	div;
-
-	nb = 0;
-	div = 0.1;
-	is_neg = 1;
-	i = skip_space_sign(str, &is_neg);
-	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
-	{
-		nb = (nb * 10.0) + (str[i] - '0');
-		i++;
-	}
-	if (str[i] == '.')
-		i++;
-	while (str[i] && ft_isdigit(str[i]))
-	{
-		nb = nb + ((str[i] - '0') * div);
-		div *= 0.1;
-		i++;
-	}
-	if (str[i] && !ft_isdigit(str[i]))
-		return (-42);
-	return (nb * is_neg);
-}
-
 void	get_julia_starting_values(t_d *d, int argc, char **argv)
 {
 	if (d->fractol != 1 || argc == 2)
@@ -186,12 +86,42 @@ void	get_julia_starting_values(t_d *d, int argc, char **argv)
 		ft_putendl("Error");
 }
 
-void	handle_args(t_d *d, int argc, char **argv)
+int		fract_select(char **argv, t_d *d)
 {
-	fract_select(argv, d);
-	if (d->fractol != 1 && argc > 3)
-		ft_putendl("Error");
-	else if (d->fractol == 1 && argc > 5)
-		ft_putendl("Error");
-	get_julia_starting_values(d, argc, argv);
+	if (ft_strcmp(argv[1], "mandelbrot") == 0)
+	{
+		d->fractol = 0;
+		mandel_init(d);
+	}
+	else if (ft_strcmp(argv[1], "julia") == 0)
+	{
+		d->fractol = 1;
+		julia_init(d);
+	}
+	else if (ft_strcmp(argv[1], "tree") == 0)
+	{
+		d->fractol = 2;
+		treeinit(d);
+	}
+	return (1);
+}
+
+void	whichfractol(t_d *d)
+{
+	clear(d);
+	if (d->fractol == 0)
+	{
+		mandel(d);
+		mandel_init(d);
+	}
+	if (d->fractol == 1)
+		julia_init(d);
+	if (d->fractol == 2)
+	{
+		d->params.len -= 1;
+		d->point1.x -= 0.5;
+		d->point1.y -= 0.5;
+		retrydraw(d);
+	}
+	mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
 }
