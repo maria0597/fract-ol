@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 03:13:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/04 22:00:49 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:46:12 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,6 @@ int	mandel_n(t_d *d)
 	}
 	return (i);
 }
-
-// void	zoomin(int x, int y, t_a *exp)
-// {
-// 	x -= WIDTH / 2;
-// 	y -= HEIGHT / 2;
-// 	d->x2 = ((d->x - x) - WIDTH) / ((double)HEIGHT * 2);
-// 	d->y2 = ((d->y - y) - HEIGHT) / (((double)WIDTH * 2) + y);
-// 	d->zoom *= pow(1.001, 70);
-// 	d->movex -= d->x2;
-// 	d->movey -= d->y2;
-// }
 
 void mandel(t_d *d)
 {

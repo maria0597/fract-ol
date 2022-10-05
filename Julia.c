@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/04 22:26:09 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:31:02 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,11 @@ void	julia(t_d *d)
 			{
 				i = julia_n(d);
 				if ((d->reim.Z_re * d->reim.Z_re + d->reim.Z_im) > 4)
+				{
+					my_mlx_pixel_put(d, d->x, d->y, (d->color *  i / 100));
 					break ;
+				}
 			}
-			if (d->n < MAX_ITERATIONS)
-				my_mlx_pixel_put(d, d->x, d->y, (d->color *  i / 100));
-			else
-				my_mlx_pixel_put(d, d->x, d->y, 0x000000);
 		}
 	}
 }
@@ -76,4 +75,3 @@ int	julia_n(t_d *d)
 	}
 	return (i);
 }
-

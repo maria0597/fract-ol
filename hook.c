@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 01:45:23 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/05 16:25:25 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	key_hook(int keycode, t_d *d)
 		d->move -= 0.1;
 		whichfractol(d);
 	}
+	zoom_hook(keycode, d);
 	return (0);
 }
 
 int zoom_hook(int keycode, t_d *d)
+{
 	if (keycode == 78)
 	{
 		d->zoom += 0.01;
@@ -58,11 +60,14 @@ int zoom_hook(int keycode, t_d *d)
 		d->zoom -= 0.01;
 		whichfractol(d);
 	}
+	return (0);
+}
 
 int	mouse_hook(int button, int x, int y, t_d *d)
 {
 	if (button == 5)
 	{
+		d->god = 1;
 		x -= WIDTH / 2;
 		y -= HEIGHT / 2;
 		d->zoom -= 0.05;
@@ -78,8 +83,9 @@ int	mouse_hook(int button, int x, int y, t_d *d)
 		whichfractol(d);
 		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
 	}
-	else if (button == 4)
+	if (button == 4)
 	{
+		d->god = -1;
 		d->zoom += 0.1;
 		ft_zoom(d);
 		whichfractol(d);
@@ -97,12 +103,3 @@ int	main_loop(t_d *d)
 	}
 	return (0);
 }
-
-// void configure_hook(t_d *d)
-// {
-// 	mlx_key_hook(d->win_ptr, key_hook, &d);
-// 	mlx_mouse_hook(d->win_ptr, mouse_hook, &d);
-// 	mlx_loop_hook(d->mlx_ptr, main_loop, &d);
-// 	mlx_hook(d->win_ptr, 17, 0, close_window, &d);
-// 	mlx_loop(d->mlx_ptr);
-// }

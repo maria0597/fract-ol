@@ -53,8 +53,8 @@ void	ft_putendl(char const *s)
 
 void		ft_zoom(t_d *d)
 {
-	double	center_r;
-	double	center_i;
+	float	center_r;
+	float	center_i;
 
 	center_r = d->reim.MinRe - d->reim.MaxRe ;
 	center_i = d->reim.MaxImm - d->reim.MinIm ;

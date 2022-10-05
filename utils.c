@@ -57,7 +57,7 @@ int	skip(char *str, int *neg)
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			*is_neg *= -1;
+			*neg *= -1;
 		i++;
 	}
 	return (i);
@@ -72,7 +72,7 @@ float	ft_atof(char *str)
 
 	nb = 0;
 	div = 0.1;
-	is_neg = 1;
+	neg = 1;
 	i = skip(str, &neg);
 	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
 	{

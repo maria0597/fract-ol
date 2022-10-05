@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 01:50:00 by marvin           ###   ########.fr       */
+/*   Updated: 2022/10/05 17:42:19 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ the universe.
 
 # define WIDTH 500
 # define HEIGHT 500
-# define MAX_ITERATIONS 60
+# define MAX_ITERATIONS 80
 # define TITLE "Welcome to the Jungle"
 
 # define MLX_ERROR 1
@@ -130,6 +130,7 @@ typedef struct	s_d
 	float 		movey;
 	float		move;
 	int			n;
+	int			god;
 	float		dx;
 	float		dy;
 	float		zoom;
@@ -162,7 +163,7 @@ void			mandelbrot(t_d *d);
 int				mandel_init(t_d *d);
 void			ft_putendl(char const *s);
 int				ft_strcmp(char *s1, char *s2);
-int				fract_select(char **argv, t_d *d);
+int				fract_select(int argc, char **argv, t_d *d);
 void			ft_move(t_d *d, double distance, char direction);
 void			ft_zoom(t_d *d);
 void			mandel(t_d *d);
