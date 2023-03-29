@@ -6,10 +6,9 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:01:00 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 15:01:11 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:52:47 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fractol.h"
 /*
@@ -24,6 +23,41 @@ And so on to viscosity
 
 */
 
+int	fract_select(int argc, char **argv, t_d *d)
+{
+	(void)argc;
+	if (ft_strcmp(argv[1], "mandelbrot") == 0)
+		d->fractol = 0;
+	else if (ft_strcmp(argv[1], "julia") == 0)
+		d->fractol = 1;
+	else if (ft_strcmp(argv[1], "tree") == 0)
+	{
+		d->fractol = 2;
+		treeinit(d);
+	}
+	return (1);
+}
+
+void	whichfractol(t_d *d)
+{
+	clear(d);
+	if (d->fractol == 0)
+	{
+		mandel(d);
+		mandel_init(d);
+	}
+	if (d->fractol == 1)
+		julia_init(d);
+	if (d->fractol == 2)
+	{
+		d->params.len -= 1 * d->god;
+		d->point1.x -= 0.5 * d->god;
+		d->point1.y -= 0.5 * d->god;
+		retrydraw(d);
+	}
+	mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+}
+
 void	handle_args(t_d *d, int argc, char **argv)
 {
 	fract_select(argc, argv, d);
@@ -35,9 +69,15 @@ void	handle_args(t_d *d, int argc, char **argv)
 		get_julia_starting_values(d, argc, argv);
 }
 
+void	error_exit(t_d *d)
+{
+	ft_putendl("Error");
+	close_window(d);
+}
+
 int	main(int argc, char **argv)
 {
-	t_d			d;
+	t_d	d;
 
 	mlx_fun(&d);
 	d.zoom = 1;
@@ -48,12 +88,13 @@ int	main(int argc, char **argv)
 		ft_putendl("Usage: ./fractol [julia] or [mandelbrot] or [tree]");
 		close_window(&d);
 	}
+	if (argc == 3)
+		error_exit(&d);
 	if (argc >= 2)
 	{
 		handle_args(&d, argc, argv);
 		whichfractol(&d);
 	}
-	//fract_select(argc,argv, &d);
 	mlx_put_image_to_window(d.mlx_ptr, d.win_ptr, d.img, 0, 0);
 	mlx_key_hook(d.win_ptr, key_hook, &d);
 	mlx_mouse_hook(d.win_ptr, mouse_hook, &d);

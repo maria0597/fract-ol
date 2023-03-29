@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 17:43:48 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:55:45 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	treeinit(t_d *d)
 	d->params.len = 115;
 	d->params.a = 90;
 	d->params.b = 30;
-	 d->god = 1;
+	d->god = 1;
 	d->x = 0;
 	d->y = 0;
 	tree(d, d->point1, d->params);
@@ -60,46 +60,47 @@ void	get_julia_starting_values(t_d *d, int argc, char **argv)
 {
 	if (d->fractol == 1 && argc == 2)
 	{
-		d->reim.c_re = 0;
-		d->reim.c_im = -0.8;
+		d->reim.c_re = -0.835;
+		d->reim.c_im = -0.2321;
 		return ;
 	}
 	d->reim.c_re = ft_atof(argv[2]);
 	d->reim.c_im = ft_atof(argv[3]);
+	if (!ft_strchr(argv[2], '.'))
+		error_exit(d);
+	if (!ft_strchr(argv[3], '.'))
+		error_exit(d);
 	if (d->reim.c_re > 2.0 || d->reim.c_re < -2.0)
-		ft_putendl("Error");
+		error_exit(d);
 	if (d->reim.c_im >= 2.0 || d->reim.c_im <= -2.0)
-		ft_putendl("Error");
+		error_exit(d);
 }
 
-int		fract_select(int argc, char **argv, t_d *d)
+float	ft_atof(char *str)
 {
-	(void)argc;
-	if (ft_strcmp(argv[1], "mandelbrot") == 0)
-		d->fractol = 0;
-	else if (ft_strcmp(argv[1], "julia") == 0)
-		d->fractol = 1;
-	else if (ft_strcmp(argv[1], "tree") == 0)
-	{
-		d->fractol = 2;
-		treeinit(d);
-	}
-	return (1);
-}
+	int		i;
+	float	nb;
+	int		neg;
+	float	div;
 
-void	whichfractol(t_d *d)
-{
-	clear(d);
-	if (d->fractol == 0)
-		mandel_init(d);
-	if (d->fractol == 1)
-		julia_init(d);
-	if (d->fractol == 2)
+	nb = 0;
+	div = 0.1;
+	neg = 1;
+	i = skip(str, &neg);
+	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
 	{
-		d->params.len -= 1 * d->god;
-		d->point1.x -= 0.5 * d->god;
-		d->point1.y -= 0.5 * d->god;
-		retrydraw(d);
+		nb = (nb * 10.0) + (str[i] - '0');
+		i++;
 	}
-	mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+	if (str[i] == '.')
+		i++;
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		nb = nb + ((str[i] - '0') * div);
+		div *= 0.1;
+		i++;
+	}
+	if (str[i] && !ft_isdigit(str[i]))
+		return (-42);
+	return (nb * neg);
 }

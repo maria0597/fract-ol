@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:29:47 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 16:25:25 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:28:57 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	close_window(t_d *d)
 
 int	key_hook(int keycode, t_d *d)
 {
-	if (keycode == 53)
-		close_window(d);
 	if (keycode == 125)
 	{
 		d->params.b += 1;
@@ -48,7 +46,7 @@ int	key_hook(int keycode, t_d *d)
 	return (0);
 }
 
-int zoom_hook(int keycode, t_d *d)
+int	zoom_hook(int keycode, t_d *d)
 {
 	if (keycode == 78)
 	{
@@ -60,6 +58,8 @@ int zoom_hook(int keycode, t_d *d)
 		d->zoom -= 0.01;
 		whichfractol(d);
 	}
+	if (keycode == 53)
+		close_window(d);
 	return (0);
 }
 
@@ -80,16 +80,14 @@ int	mouse_hook(int button, int x, int y, t_d *d)
 			ft_move(d, (double)y * -1 / HEIGHT, 'U');
 		else if (y > 0)
 			ft_move (d, (double)y / HEIGHT, 'D');
-		whichfractol(d);
-		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+		onlyzoom(d);
 	}
 	if (button == 4)
 	{
 		d->god = -1;
 		d->zoom += 0.1;
 		ft_zoom(d);
-		whichfractol(d);
-		mlx_put_image_to_window(d->mlx_ptr, d-> win_ptr, d->img, 0, 0);
+		onlyzoom(d);
 	}
 	return (0);
 }

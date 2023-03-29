@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 07:35:48 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 17:42:19 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:37:20 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ the universe.
 # include <unistd.h>
 # include <math.h>
 
-# define WIDTH 500
+# define WIDTH 600
 # define HEIGHT 500
 # define MAX_ITERATIONS 80
 # define TITLE "Welcome to the Jungle"
@@ -176,5 +176,7 @@ char			*ft_strchr(const char *s, int c);
 void			handle_args(t_d *d, int argc, char **argv);
 void			whichfractol(t_d *d);
 int				zoom_hook(int keycode, t_d *d);
+void			error_exit(t_d *d);
+void			onlyzoom(t_d *d);
 
 #endif

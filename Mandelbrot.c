@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 03:13:31 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 17:46:12 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:18:38 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ to c → sum(c).
 
 Useful link: http://warp.povusers.org/Mandelbrot/
 */
-
 void	mandelbrot(t_d *d)
 {
-	int n;
-	
+	int	n;
+
 	while (d->y < HEIGHT)
 	{
 		d->reim.c_im = d->reim.MaxImm - d->y * d->reim.Im_factor;
@@ -52,7 +51,7 @@ void	mandelbrot(t_d *d)
 			d->isInside = 1;
 			n = mandel_n(d);
 			if (!d->isInside)
-				my_mlx_pixel_put(d, d->x, d->y, (d->color *  n / 100));
+				my_mlx_pixel_put(d, d->x, d->y, (d->color * n / 100));
 		++d->x;
 		}
 	++d->y;
@@ -80,11 +79,11 @@ int	mandel_n(t_d *d)
 	return (i);
 }
 
-void mandel(t_d *d)
+void	mandel(t_d *d)
 {
 	d->reim.MinRe = -2.0 * d->zoom - (d->move * d->zoom);
 	d->reim.MaxRe = 1.0 * d->zoom - (d->move * d->zoom);
 	d->reim.MinIm = -1.2;
-	d->reim.MaxImm = d->reim.MinIm + (d->reim.MaxRe - d->reim.MinRe) * HEIGHT / WIDTH ;
+	d->reim.MaxImm = d->reim.MinIm + (d->reim.MaxRe - d->reim.MinRe) \
+						* HEIGHT / WIDTH ;
 }
-

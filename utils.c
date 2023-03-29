@@ -14,7 +14,7 @@
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s2[i] != '\0' && s1[i] != '\0' && s1[i] == s2[i])
@@ -61,33 +61,4 @@ int	skip(char *str, int *neg)
 		i++;
 	}
 	return (i);
-}
-
-float	ft_atof(char *str)
-{
-	int		i;
-	float	nb;
-	int		neg;
-	float	div;
-
-	nb = 0;
-	div = 0.1;
-	neg = 1;
-	i = skip(str, &neg);
-	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
-	{
-		nb = (nb * 10.0) + (str[i] - '0');
-		i++;
-	}
-	if (str[i] == '.')
-		i++;
-	while (str[i] && ft_isdigit(str[i]))
-	{
-		nb = nb + ((str[i] - '0') * div);
-		div *= 0.1;
-		i++;
-	}
-	if (str[i] && !ft_isdigit(str[i]))
-		return (-42);
-	return (nb * neg);
 }

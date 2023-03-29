@@ -6,7 +6,7 @@
 /*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 21:28:19 by mardolin          #+#    #+#             */
-/*   Updated: 2022/10/05 14:31:02 by mardolin         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:03:12 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ periodic points are called parabolic points.
 */
 void	julia(t_d *d)
 {
-	int i;
-	
+	int	i;
+
 	d->y = -1;
 	while (++d->y < HEIGHT)
 	{
@@ -50,7 +50,7 @@ void	julia(t_d *d)
 				i = julia_n(d);
 				if ((d->reim.Z_re * d->reim.Z_re + d->reim.Z_im) > 4)
 				{
-					my_mlx_pixel_put(d, d->x, d->y, (d->color *  i / 100));
+					my_mlx_pixel_put(d, d->x, d->y, (d->color * i / 100));
 					break ;
 				}
 			}

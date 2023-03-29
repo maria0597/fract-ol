@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx2.c                                             :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mardolin <mardolin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 21:55:53 by marvin            #+#    #+#             */
-/*   Updated: 2022/09/27 21:55:53 by marvin           ###   ########.fr       */
+/*   Created: 2022/10/06 15:18:08 by mardolin          #+#    #+#             */
+/*   Updated: 2022/10/06 15:18:08 by mardolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int mlx_fun(t_d *d)
+int	mlx_fun(t_d *d)
 {
 	d->mlx_ptr = mlx_init();
 	if (d->mlx_ptr == NULL)
 		return (MLX_ERROR);
-	d->win_ptr = mlx_new_window(d->mlx_ptr, WIDTH, HEIGHT, "Welcome to the jungle");
+	d->win_ptr = mlx_new_window(d->mlx_ptr, WIDTH, HEIGHT, TITLE);
 	d->img = mlx_new_image(d->mlx_ptr, WIDTH, HEIGHT);
 	d->addr = mlx_get_data_addr(d->img, &d->btx, &d->ll, &d->en);
 	if (d->win_ptr == NULL)
@@ -38,7 +38,7 @@ void	ft_putchar(char c)
 
 void	ft_putendl(char const *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
@@ -51,7 +51,7 @@ void	ft_putendl(char const *s)
 	ft_putchar('\n');
 }
 
-void		ft_zoom(t_d *d)
+void	ft_zoom(t_d *d)
 {
 	float	center_r;
 	float	center_i;
@@ -64,7 +64,7 @@ void		ft_zoom(t_d *d)
 	d->reim.MaxImm = d->reim.MinIm + d->zoom * center_i;
 }
 
-void		ft_move(t_d *d, double distance, char direction)
+void	ft_move(t_d *d, double distance, char direction)
 {
 	double	center_r;
 	double	center_i;
@@ -89,6 +89,6 @@ void		ft_move(t_d *d, double distance, char direction)
 	else if (direction == 'U')
 	{
 		d->reim.MinIm += center_i * distance;
-		d->reim.MaxImm  += center_i * distance;
+		d->reim.MaxImm += center_i * distance;
 	}
 }
