@@ -6,16 +6,17 @@ RM = rm -rf
 
 FLAGS = -Wall -Wextra -Werror -g
 
-FLAGS2 = -lmlx -framework OpenGL -framework AppKit
-
-SRC = *.c
+SRC = $(wildcard *.c)
 
 OBJS = $(SRC:.c=.o)
 
+%.o: %.c
+	$(CC) $(FLAGS) -c $^ -o $@
+
 all: $(NAME)
 
-$(NAME): $(SRC)
-			$(CC) $(FLAGS) $(FLAGS2) $(SRC) -o fractol
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) $(OBJS) ./mlx_linux/libmlx_Linux.a -o $@ -lm -lX11 -lXext
 norme:
 					@norminette $(SRC)
 
